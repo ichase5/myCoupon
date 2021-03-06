@@ -283,6 +283,19 @@ public class UserServiceImpl implements IUserService {
     public SettlementInfo settlement(SettlementInfo info)
             throws CouponException {
 
+        //校验优惠券是否是用户可用的
+        List<Integer> usableTemplateIds = findCouponsByStatus(info.getUserId(), CouponStatus.USABLE.getCode())
+                .stream().map(Coupon::getTemplateId).collect(Collectors.toList());
+
+        List<Integer> providedTemplateIds = info.getCouponAndTemplateInfos().stream()
+                .map(SettlementInfo.CouponAndTemplateInfo::getTemplate)
+                .map(CouponTemplateSDK::getId).collect(Collectors.toList());
+
+        if(!CollectionUtils.isSubCollection(providedTemplateIds,usableTemplateIds)){
+            log.error("存在此用户无法使用的优惠券，settlement info = {}",info);
+            throw new CouponException("存在此用户无法使用的优惠券");
+        }
+
         return settlementClient.computeRule(info).getData();
 
     }
