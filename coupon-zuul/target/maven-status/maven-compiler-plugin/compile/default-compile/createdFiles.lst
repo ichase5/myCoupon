@@ -1,0 +1,8 @@
+org\example\myCoupon\filter\PreRequestFilter.class
+org\example\myCoupon\filter\AbstractPreZuulFilter.class
+org\example\myCoupon\filter\TokenFilter.class
+org\example\myCoupon\filter\AccessLogFilter.class
+org\example\myCoupon\filter\RateLimiterFilter.class
+org\example\myCoupon\filter\AbstractPostZuulFilter.class
+org\example\myCoupon\filter\AbstractZuulFilter.class
+org\example\myCoupon\ZuulApplication.class

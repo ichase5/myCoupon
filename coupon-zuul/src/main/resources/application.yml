@@ -1,0 +1,36 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: coupon-zuul
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 121.4.35.23:8848 #Nacos地址
+
+zuul:
+  prefix: /icoupon
+  routes:
+    # 优惠券模板微服务路由配置定义
+    template:
+      path: /coupon-template/**
+      serviceId: coupon-template
+      strip-prefix: false  #URL是否包含前缀
+    # 优惠券分发微服务路由配置定义
+    distribution:
+      path: /coupon-distribution/**
+      serviceId: coupon-distribution
+      strip-prefix: false  #URL是否包含前缀
+    # 优惠券结算微服务路由配置定义
+    settlement:
+      path: /coupon-settlement/**
+      serviceId: coupon-settlement
+      strip-prefix: false  #URL是否包含前缀
+  host:
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
+
+ribbon:
+  ConnectTimeout: 15000
+  ReadTimeout: 15000

@@ -1,0 +1,29 @@
+{
+  "available": 0,
+  "category": "003",
+  "count": 1000,
+  "desc": "这是第三张优惠券（立减）",
+  "logo": "http://www.ichase.com",
+  "name": "优惠券03",
+  "productLine": "1",
+  "rule": {
+    "discount": {
+      "base": 1,
+      "quota": 5
+    },
+    "expiration": {
+      "deadline": 1617540278582,
+      "gap": 1,
+      "period": 1
+    },
+    "limitation": 1,
+    "usage": {
+      "city": "西安市",
+      "goodsType": "[1,3]",
+      "province": "陕西省"
+    },
+    "weight": "[]"
+  },
+  "target": "1",
+  "userId": 10001
+}

@@ -1,0 +1,17 @@
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\constant\Constant.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\constant\DistributeTarget.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\exception\CouponException.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\conf\WebConfiguration.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\constant\ProductLine.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\vo\TemplateRule.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\constant\GoodsType.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\vo\GoodsInfo.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\vo\SettlementInfo.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\advice\CommonResponseDataAdvice.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\annotation\IgnoreResponseAdvice.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\constant\PeriodType.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\vo\CouponTemplateSDK.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\advice\GlobalExceptionAdvice.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\vo\CommonResponse.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\conf\JacksonConfig.java
+C:\Users\i_chase\IdeaProjects\myCoupon\coupon-common\src\main\java\org\example\myCoupon\constant\CouponCategory.java
