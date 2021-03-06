@@ -3,10 +3,14 @@ package org.example.myCoupon.executor.impl;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.example.myCoupon.constant.Constant;
 import org.example.myCoupon.constant.CouponCategory;
+import org.example.myCoupon.constant.CouponStatus;
 import org.example.myCoupon.constant.RuleFlag;
+import org.example.myCoupon.exception.CouponException;
 import org.example.myCoupon.executor.AbstractExecutor;
 import org.example.myCoupon.executor.RuleExecutor;
+import org.example.myCoupon.vo.CouponKafkaMessage;
 import org.example.myCoupon.vo.GoodsInfo;
 import org.example.myCoupon.vo.SettlementInfo;
 import org.springframework.stereotype.Component;
@@ -108,6 +112,11 @@ public class ManJianZheKouExecutor extends AbstractExecutor implements RuleExecu
         log.debug("Use ManJian And ZheKou Coupon Make Goods Cost From {} To {}",
                 goodsSum, settlement.getCost());
 
+        //核销
+        if(settlement.getEmploy()){
+            processEmploy(settlement);
+        }
+
         return settlement;
     }
 
@@ -178,6 +187,38 @@ public class ManJianZheKouExecutor extends AbstractExecutor implements RuleExecu
         return CollectionUtils.isSubCollection(Arrays.asList(manjianKey, zhekouKey), allSharedKeysForManjian)
                 ||
                 CollectionUtils.isSubCollection(Arrays.asList(manjianKey, zhekouKey), allSharedKeysForZhekou);
+    }
+
+    /*
+     *核销后，更新coupon状态
+     */
+    @Override
+    public void processEmploy(SettlementInfo settlement) {
+
+        List<Integer> couponIds = settlement.getCouponAndTemplateInfos()
+                .stream().map(SettlementInfo.CouponAndTemplateInfo::getId).collect(Collectors.toList());
+
+        //更新缓存
+        try {
+            redisService.addCouponToCache(
+                    settlement.getUserId(),
+                    couponDao.findAllById(couponIds),
+                    CouponStatus.USED.getCode()
+            );
+        } catch (CouponException e) {
+            e.printStackTrace();
+        }
+
+
+        //通过kafka,更新coupon状态为used
+        //发送到 kafka 中做异步处理, 更新db状态
+        kafkaTemplate.send(
+                Constant.TOPIC,
+                JSON.toJSONString(new CouponKafkaMessage(
+                        CouponStatus.USED.getCode(),
+                        couponIds
+                ))
+        );
     }
 
 }

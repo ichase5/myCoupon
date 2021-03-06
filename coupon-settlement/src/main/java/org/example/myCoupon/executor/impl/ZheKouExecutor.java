@@ -58,6 +58,11 @@ public class ZheKouExecutor extends AbstractExecutor implements RuleExecutor {
         log.debug("Use ZheKou Coupon Make Goods Cost From {} To {}",
                 goodsSum, settlement.getCost());
 
+        //核销
+        if(settlement.getEmploy()){
+            processEmploy(settlement);
+        }
+
         return settlement;
 
     }

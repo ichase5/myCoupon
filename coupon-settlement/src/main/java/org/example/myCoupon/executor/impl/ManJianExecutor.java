@@ -1,14 +1,21 @@
 package org.example.myCoupon.executor.impl;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.example.myCoupon.constant.Constant;
+import org.example.myCoupon.constant.CouponStatus;
 import org.example.myCoupon.constant.RuleFlag;
 import org.example.myCoupon.executor.AbstractExecutor;
 import org.example.myCoupon.executor.RuleExecutor;
+import org.example.myCoupon.vo.CouponKafkaMessage;
 import org.example.myCoupon.vo.CouponTemplateSDK;
 import org.example.myCoupon.vo.SettlementInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 
 /*
@@ -17,6 +24,7 @@ import java.util.Collections;
 @Slf4j
 @Component
 public class ManJianExecutor extends AbstractExecutor implements RuleExecutor {
+
 
     /*
      * 规则类型标记
@@ -65,6 +73,13 @@ public class ManJianExecutor extends AbstractExecutor implements RuleExecutor {
         );
         log.debug("Use ManJian Coupon Make Goods Cost From {} To {}",
                 goodsSum, settlement.getCost());
+
+
+        //核销
+        if(settlement.getEmploy()){
+            processEmploy(settlement);
+        }
+
 
         return settlement;
     }

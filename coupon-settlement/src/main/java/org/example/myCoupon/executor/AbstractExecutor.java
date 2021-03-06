@@ -2,18 +2,37 @@ package org.example.myCoupon.executor;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.collections4.CollectionUtils;
+import org.example.myCoupon.constant.Constant;
+import org.example.myCoupon.constant.CouponStatus;
+import org.example.myCoupon.dao.CouponDao;
+import org.example.myCoupon.exception.CouponException;
+import org.example.myCoupon.service.IRedisService;
+import org.example.myCoupon.vo.CouponKafkaMessage;
 import org.example.myCoupon.vo.GoodsInfo;
 import org.example.myCoupon.vo.SettlementInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /*
  * 规则执行器抽象类
  */
 public abstract class AbstractExecutor {
+
+    /** Kafka 客户端 */
+    @Autowired
+    protected KafkaTemplate<String, String> kafkaTemplate;
+
+    @Autowired
+    protected IRedisService redisService;
+
+    @Autowired
+    protected CouponDao couponDao;
 
     /*
      * 校验商品类型与优惠券是否匹配
@@ -90,5 +109,36 @@ public abstract class AbstractExecutor {
     protected double minCost() {
         return 0.1;
     }
+
+    /*
+     *核销后，更新coupon状态
+     */
+    public void processEmploy(SettlementInfo settlement) {
+
+        Integer couponId = settlement.getCouponAndTemplateInfos().get(0).getId();
+
+        //更新缓存
+        try {
+            redisService.addCouponToCache(
+                    settlement.getUserId(),
+                    couponDao.findAllById(Collections.singletonList(couponId)),
+                    CouponStatus.USED.getCode()
+            );
+        } catch (CouponException e) {
+            e.printStackTrace();
+        }
+
+
+        //通过kafka,更新coupon状态为used
+        //发送到 kafka 中做异步处理, 更新db状态
+        kafkaTemplate.send(
+                Constant.TOPIC,
+                JSON.toJSONString(new CouponKafkaMessage(
+                        CouponStatus.USED.getCode(),
+                        Collections.singletonList(couponId)
+                ))
+        );
+    }
+
 
 }

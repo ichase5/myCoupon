@@ -58,3 +58,6 @@ feign:
       coupon-template:  # 单独服务的配置
         connectTimeout: 3000  # 默认的连接超时时间是 10s
         readTimeout: 5000
+
+ribbon:
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule

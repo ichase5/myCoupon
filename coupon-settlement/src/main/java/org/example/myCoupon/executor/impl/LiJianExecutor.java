@@ -55,6 +55,11 @@ public class LiJianExecutor extends AbstractExecutor implements RuleExecutor {
         log.debug("Use LiJian Coupon Make Goods Cost From {} To {}",
                 goodsSum, settlement.getCost());
 
+        //核销
+        if(settlement.getEmploy()){
+            processEmploy(settlement);
+        }
+
         return settlement;
 
     }

@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc52145b-ffab-4e47-86c9-18b51176dcc6" name="Default Changelist" comment="" />
+    <list default="true" id="fc52145b-ffab-4e47-86c9-18b51176dcc6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/coupon-distribution/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/coupon-distribution/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coupon-settlement/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/coupon-settlement/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/AbstractExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/AbstractExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/impl/LiJianExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/impl/LiJianExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/impl/ManJianExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/impl/ManJianExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/impl/ManJianZheKouExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/impl/ManJianZheKouExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/impl/ZheKouExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon/executor/impl/ZheKouExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coupon-zuul/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/coupon-zuul/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +47,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/coupon-settlement/src/main/java/org/example/myCoupon" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/coupon-distribution/src/main/resources/coupon-distribution-request" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springcloud" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.097751714" />
     <property name="project.structure.side.proportion" value="0.30034524" />
@@ -137,10 +146,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ZuulApplication" />
         <item itemvalue="Application.DistributionApplication" />
         <item itemvalue="Application.TemplateApplication" />
         <item itemvalue="Application.SettlementApplication" />
-        <item itemvalue="Application.ZuulApplication" />
         <item itemvalue="JUnit.TemplateApplicationTests.contextLoad" />
       </list>
     </recent_temporary>
